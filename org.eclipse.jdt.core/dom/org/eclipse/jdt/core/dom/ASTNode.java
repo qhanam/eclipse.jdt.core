@@ -11,6 +11,7 @@
 
 package org.eclipse.jdt.core.dom;
 
+import java.io.InvalidClassException;
 import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -20,6 +21,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.jdt.internal.core.dom.NaiveASTFlattener;
+
+import ca.ubc.ece.salt.gumtree.ast.ClassifiedASTNode;
 
 /**
  * Abstract superclass of all Abstract Syntax Tree (AST) node types.
@@ -123,7 +126,7 @@ import org.eclipse.jdt.internal.core.dom.NaiveASTFlattener;
  * @noextend This class is not intended to be subclassed by clients.
  */
 @SuppressWarnings({ "rawtypes", "unchecked" })
-public abstract class ASTNode {
+public abstract class ASTNode implements ClassifiedASTNode{
 	/*
 	 * ATTENTION: When doing anything to the ASTNode hierarchy, do not try to
 	 * reinvent the wheel.
@@ -1248,6 +1251,91 @@ public abstract class ASTNode {
 	 * @since 3.0
 	 */
 	static final boolean OPTIONAL = false;
+	
+	/** The change type from AST differencing
+	 * @category Pangor
+	 * @author Quinn Hanam
+	 */
+	protected ChangeType changeType;
+	
+	/** The source or destination node that this node maps to.
+	 * @category Pangor
+	 * @author Quinn Hanam
+	 */
+	protected ASTNode mappedNode;
+	
+	/**
+	 * @category Pangor
+	 * @author Quinn Hanam
+	 */
+	@Override
+	public void setChangeType(ChangeType changeType) {
+		this.changeType = changeType;
+	}
+	
+	/**
+	 * @category Pangor
+	 * @author Quinn Hanam
+	 */
+	@Override
+	public ChangeType getChangeType() {
+		return this.changeType;
+	}
+
+	/**
+	 * @category Pangor
+	 * @author Quinn Hanam
+	 */
+	@Override
+	public void map(ClassifiedASTNode node) throws InvalidClassException {
+		if(!(node instanceof ASTNode)) throw new InvalidClassException("The ClassifiedASTNode is not an ASTNode."); //$NON-NLS-1$
+		this.mappedNode = (ASTNode) node;
+	}
+	
+	/**
+	 * @category Pangor
+	 * @author Quinn Hanam
+	 */
+	@Override
+	public ClassifiedASTNode getMapping() {
+		return this.mappedNode;
+	}
+	
+	/**
+	 * @category Pangor
+	 * @author Quinn Hanam
+	 */
+	@Override
+	public boolean isEmpty() {
+		return this.getNodeType() == ASTNode.EMPTY_STATEMENT;
+	}
+	
+	/**
+	 * @category Pangor
+	 * @author Quinn Hanam
+	 */
+	@Override
+	public String getASTNodeType() {
+		return this.toString();
+	}
+	
+	/**
+	 * @category Pangor
+	 * @author Quinn Hanam
+	 */
+	@Override
+	public String getCFGLabel() {
+		return this.toString().replace("\n", "").replace("\"", "\\\""); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+	}
+	
+	/**
+	 * @category Pangor
+	 * @author Quinn Hanam
+	 */
+	@Override
+	public boolean isStatement() {
+		return false;
+	}
 
 	/**
 	 * A specialized implementation of a list of ASTNodes. The

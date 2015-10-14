@@ -1,9 +1,162 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <component id="org.eclipse.jdt.core" version="2">
+    <resource path="compiler/org/eclipse/jdt/core/compiler/CharOperation.java" type="org.eclipse.jdt.core.compiler.CharOperation">
+        <filter id="1141899266">
+            <message_arguments>
+                <message_argument value="3.11"/>
+                <message_argument value="3.12"/>
+                <message_argument value="append(char[], char[])"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="compiler/org/eclipse/jdt/core/compiler/IProblem.java" type="org.eclipse.jdt.core.compiler.IProblem">
+        <filter id="1209008130">
+            <message_arguments>
+                <message_argument value="3.11"/>
+                <message_argument value="3.12"/>
+                <message_argument value="ContradictoryNullAnnotationsInferredFunctionType"/>
+            </message_arguments>
+        </filter>
+        <filter id="1209008130">
+            <message_arguments>
+                <message_argument value="3.11"/>
+                <message_argument value="3.12"/>
+                <message_argument value="ExceptionParameterIsNeverUsed"/>
+            </message_arguments>
+        </filter>
+        <filter id="1209008130">
+            <message_arguments>
+                <message_argument value="3.11"/>
+                <message_argument value="3.12"/>
+                <message_argument value="IllegalParameterNullityRedefinition"/>
+            </message_arguments>
+        </filter>
+        <filter id="1209008130">
+            <message_arguments>
+                <message_argument value="3.11"/>
+                <message_argument value="3.12"/>
+                <message_argument value="IllegalReturnNullityRedefinitionFreeTypeVariable"/>
+            </message_arguments>
+        </filter>
+        <filter id="1209008130">
+            <message_arguments>
+                <message_argument value="3.11"/>
+                <message_argument value="3.12"/>
+                <message_argument value="ImplicitObjectBoundNoNullDefault"/>
+            </message_arguments>
+        </filter>
+        <filter id="1209008130">
+            <message_arguments>
+                <message_argument value="3.11"/>
+                <message_argument value="3.12"/>
+                <message_argument value="InvalidTypeArguments"/>
+            </message_arguments>
+        </filter>
+        <filter id="1209008130">
+            <message_arguments>
+                <message_argument value="3.11"/>
+                <message_argument value="3.12"/>
+                <message_argument value="NotAnnotationType"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="dom/org/eclipse/jdt/core/dom/IDocElement.java" type="org.eclipse.jdt.core.dom.IDocElement">
+        <filter id="1108344834">
+            <message_arguments>
+                <message_argument value="3.11, internal interface since 3.0"/>
+                <message_argument value="3.12, internal interface since 3.0"/>
+                <message_argument value="org.eclipse.jdt.core.dom.IDocElement"/>
+            </message_arguments>
+        </filter>
+    </resource>
     <resource path="dom/org/eclipse/jdt/core/dom/IExtendedModifier.java" type="org.eclipse.jdt.core.dom.IExtendedModifier">
         <filter comment="IExtendedModifier was never meant to be extendable (bug 416586)" id="403853384">
             <message_arguments>
                 <message_argument value="org.eclipse.jdt.core.dom.IExtendedModifier"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="dom/org/eclipse/jdt/core/dom/IMethodBinding.java" type="org.eclipse.jdt.core.dom.IMethodBinding">
+        <filter id="1209008130">
+            <message_arguments>
+                <message_argument value="3.11"/>
+                <message_argument value="3.12"/>
+                <message_argument value="getDeclaringMember()"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="dom/org/eclipse/jdt/core/dom/ITypeBinding.java" type="org.eclipse.jdt.core.dom.ITypeBinding">
+        <filter id="1209008130">
+            <message_arguments>
+                <message_argument value="3.11"/>
+                <message_argument value="3.12"/>
+                <message_argument value="getDeclaringMember()"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="dom/org/eclipse/jdt/core/dom/rewrite/ImportRewrite.java" type="org.eclipse.jdt.core.dom.rewrite.ImportRewrite$ImportRewriteContext">
+        <filter id="1141899266">
+            <message_arguments>
+                <message_argument value="3.11"/>
+                <message_argument value="3.12"/>
+                <message_argument value="RES_NAME_UNKNOWN_NEEDS_EXPLICIT_IMPORT"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="formatter/org/eclipse/jdt/core/formatter/CodeFormatter.java" type="org.eclipse.jdt.core.formatter.CodeFormatter">
+        <filter id="1141899266">
+            <message_arguments>
+                <message_argument value="3.11"/>
+                <message_argument value="3.12"/>
+                <message_argument value="setOptions(Map&lt;String,String&gt;)"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="model/org/eclipse/jdt/core/IClasspathAttribute.java" type="org.eclipse.jdt.core.IClasspathAttribute">
+        <filter id="1209008130">
+            <message_arguments>
+                <message_argument value="3.11"/>
+                <message_argument value="3.12"/>
+                <message_argument value="EXTERNAL_ANNOTATION_PATH"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="model/org/eclipse/jdt/core/JavaCore.java" type="org.eclipse.jdt.core.JavaCore">
+        <filter id="1141899266">
+            <message_arguments>
+                <message_argument value="3.11"/>
+                <message_argument value="3.12"/>
+                <message_argument value="COMPILER_PB_UNUSED_EXCEPTION_PARAMETER"/>
+            </message_arguments>
+        </filter>
+        <filter id="1141899266">
+            <message_arguments>
+                <message_argument value="3.11"/>
+                <message_argument value="3.12"/>
+                <message_argument value="DEFAULT_JAVA_FORMATTER"/>
+            </message_arguments>
+        </filter>
+        <filter id="1141899266">
+            <message_arguments>
+                <message_argument value="3.11"/>
+                <message_argument value="3.12"/>
+                <message_argument value="JAVA_FORMATTER"/>
+            </message_arguments>
+        </filter>
+        <filter id="1141899266">
+            <message_arguments>
+                <message_argument value="3.11"/>
+                <message_argument value="3.12"/>
+                <message_argument value="JAVA_FORMATTER_EXTENSION_POINT_ID"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="model/org/eclipse/jdt/core/util/ExternalAnnotationUtil.java" type="org.eclipse.jdt.core.util.ExternalAnnotationUtil">
+        <filter id="1108344834">
+            <message_arguments>
+                <message_argument value="3.11"/>
+                <message_argument value="3.12"/>
+                <message_argument value="org.eclipse.jdt.core.util.ExternalAnnotationUtil"/>
             </message_arguments>
         </filter>
     </resource>

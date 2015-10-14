@@ -57,6 +57,16 @@ public abstract class Statement extends ASTNode {
 	 * @deprecated The leading comment feature was removed in 2.1.
 	 */
 	private String optionalLeadingComment = null;
+	
+	
+	/**
+	 * @category Pangor
+	 * @author Quinn Hanam
+	 */
+	@Override
+	public boolean isStatement() {
+		return true;
+	}
 
 	/**
 	 * Creates a new AST node for a statement owned by the given AST.
