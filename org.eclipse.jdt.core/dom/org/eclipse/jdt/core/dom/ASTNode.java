@@ -1316,7 +1316,7 @@ public abstract class ASTNode implements ClassifiedASTNode{
 	 */
 	@Override
 	public String getASTNodeType() {
-		return this.toString();
+		return this.getClass().getName();
 	}
 	
 	/**
