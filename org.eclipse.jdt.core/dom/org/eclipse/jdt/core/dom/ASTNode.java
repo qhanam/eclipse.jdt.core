@@ -19,6 +19,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.eclipse.jdt.internal.core.dom.NaiveASTFlattener;
 
@@ -1263,6 +1265,57 @@ public abstract class ASTNode implements ClassifiedASTNode{
 	 * @author Quinn Hanam
 	 */
 	protected ASTNode mappedNode;
+
+    /** 
+     * A unique ID for the AstNode (same for source and destination nodes) 
+     * @category Pangor
+     * @author Quinn Hanam
+     */
+    protected Integer ID;
+
+    /**
+     * The version of the node relative to the commit. Can be source or
+     * destination node.
+     * @category Pangor
+     * @author Quinn Hanam
+     */
+    protected Version version;
+
+    /**
+     * @category Pangor
+     * @author Quinn Hanam
+     */
+    @Override
+    public void setID(Integer ID) {
+    	this.ID = ID;
+    }
+
+    /**
+     * @category Pangor
+     * @author Quinn Hanam
+     */
+    @Override
+	public Integer getID() {
+    	return this.ID;
+    }
+
+    /**
+     * @category Pangor
+     * @author Quinn Hanam
+     */
+    @Override
+    public void setVersion(Version version) {
+    	this.version = version;
+    }
+
+    /**
+     * @category Pangor
+     * @author Quinn Hanam
+     */
+    @Override
+    public Version getVersion() {
+    	return this.version;
+    }
 	
 	/**
 	 * @category Pangor
@@ -1316,7 +1369,12 @@ public abstract class ASTNode implements ClassifiedASTNode{
 	 */
 	@Override
 	public String getASTNodeType() {
-		return this.getClass().getName();
+		Pattern pattern = Pattern.compile("\\.([A-Za-z]+)$"); //$NON-NLS-1$
+		Matcher matcher = pattern.matcher(this.getClass().getName());
+		if(matcher.find()) {
+			return matcher.group(1);
+		}
+		return "[unknown]"; //$NON-NLS-1$
 	}
 	
 	/**
