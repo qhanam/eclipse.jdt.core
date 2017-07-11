@@ -1255,20 +1255,20 @@ public abstract class ASTNode implements ClassifiedASTNode{
 	static final boolean OPTIONAL = false;
 	
 	/** The change type from AST differencing
-	 * @category Pangor
+	 * @category CommitMiner
 	 * @author Quinn Hanam
 	 */
 	protected ChangeType changeType;
 	
 	/** The source or destination node that this node maps to.
-	 * @category Pangor
+	 * @category CommitMiner
 	 * @author Quinn Hanam
 	 */
 	protected ASTNode mappedNode;
 
     /** 
      * A unique ID for the AstNode (same for source and destination nodes) 
-     * @category Pangor
+     * @category CommitMiner
      * @author Quinn Hanam
      */
     protected Integer ID;
@@ -1276,13 +1276,31 @@ public abstract class ASTNode implements ClassifiedASTNode{
     /**
      * The version of the node relative to the commit. Can be source or
      * destination node.
-     * @category Pangor
+     * @category CommitMiner
      * @author Quinn Hanam
      */
     protected Version version;
+    
+	/**
+	 * The fixed (pre-computed) absolute position of the node in the AST.
+	 * @category CommitMiner
+	 * @author Quinn Hanam
+	 */
+	protected int fixedPosition = -1; 
+	
+    /**
+     * Because the analysis is partial, the origin of some values cannot be 
+     * tracked. In these cases, we provide dummy value declarations, which are
+     * expressions which may provide new values. This field tracks which 
+     * {@code AstNodes} provided dummy values during the analysis.
+     * 
+     * {@code true} if this node provides a dummy value declaration, {@code
+     * false} otherwise.
+     */
+    protected boolean dummy = false; 	
 
     /**
-     * @category Pangor
+     * @category CommitMiner
      * @author Quinn Hanam
      */
     @Override
@@ -1291,7 +1309,7 @@ public abstract class ASTNode implements ClassifiedASTNode{
     }
 
     /**
-     * @category Pangor
+     * @category CommitMiner
      * @author Quinn Hanam
      */
     @Override
@@ -1300,7 +1318,7 @@ public abstract class ASTNode implements ClassifiedASTNode{
     }
 
     /**
-     * @category Pangor
+     * @category CommitMiner
      * @author Quinn Hanam
      */
     @Override
@@ -1309,7 +1327,7 @@ public abstract class ASTNode implements ClassifiedASTNode{
     }
 
     /**
-     * @category Pangor
+     * @category CommitMiner
      * @author Quinn Hanam
      */
     @Override
@@ -1318,7 +1336,7 @@ public abstract class ASTNode implements ClassifiedASTNode{
     }
 	
 	/**
-	 * @category Pangor
+	 * @category CommitMiner
 	 * @author Quinn Hanam
 	 */
 	@Override
@@ -1327,7 +1345,7 @@ public abstract class ASTNode implements ClassifiedASTNode{
 	}
 	
 	/**
-	 * @category Pangor
+	 * @category CommitMiner
 	 * @author Quinn Hanam
 	 */
 	@Override
@@ -1336,7 +1354,7 @@ public abstract class ASTNode implements ClassifiedASTNode{
 	}
 
 	/**
-	 * @category Pangor
+	 * @category CommitMiner
 	 * @author Quinn Hanam
 	 */
 	@Override
@@ -1346,7 +1364,7 @@ public abstract class ASTNode implements ClassifiedASTNode{
 	}
 	
 	/**
-	 * @category Pangor
+	 * @category CommitMiner
 	 * @author Quinn Hanam
 	 */
 	@Override
@@ -1355,7 +1373,7 @@ public abstract class ASTNode implements ClassifiedASTNode{
 	}
 	
 	/**
-	 * @category Pangor
+	 * @category CommitMiner
 	 * @author Quinn Hanam
 	 */
 	@Override
@@ -1364,7 +1382,7 @@ public abstract class ASTNode implements ClassifiedASTNode{
 	}
 	
 	/**
-	 * @category Pangor
+	 * @category CommitMiner
 	 * @author Quinn Hanam
 	 */
 	@Override
@@ -1378,7 +1396,7 @@ public abstract class ASTNode implements ClassifiedASTNode{
 	}
 	
 	/**
-	 * @category Pangor
+	 * @category CommitMiner
 	 * @author Quinn Hanam
 	 */
 	@Override
@@ -1387,12 +1405,58 @@ public abstract class ASTNode implements ClassifiedASTNode{
 	}
 	
 	/**
-	 * @category Pangor
+	 * @category CommitMiner
 	 * @author Quinn Hanam
 	 */
 	@Override
 	public boolean isStatement() {
+		return this instanceof Statement;
+	}
+
+	/**
+	 * @category CommitMiner
+	 * @author Quinn Hanam
+	 */
+	@Override
+	public void setDummy() {
+		this.dummy = true;
+	}
+
+	/**
+	 * @category CommitMiner
+	 * @author Quinn Hanam
+	 */
+	@Override
+	public boolean isDummy() {
+		return this.dummy;
+	}
+
+	/**
+	 * @category CommitMiner
+	 * @author Quinn Hanam
+	 */
+	@Override
+	public boolean isFunction() {
 		return false;
+	}
+
+	/**
+	 * @category CommitMiner
+	 * @author Quinn Hanam
+	 */
+	@Override
+	public void setFixedPosition(int fixedPosition) {
+		this.fixedPosition = fixedPosition;
+	}
+
+	/**
+	 * @category CommitMiner
+	 * @author Quinn Hanam
+	 */
+	@Override
+	public int getFixedPosition() {
+		if(this.fixedPosition < 0) return this.getStartPosition();
+		return this.fixedPosition;
 	}
 
 	/**
